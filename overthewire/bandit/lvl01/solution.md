@@ -1,1 +1,1 @@
-# Bandit Level 01
+Now that you entered bandit0, when you check all the recommended manuals, you see “ls” lists files and directories, and “cat” is used to open what’s inside. When running “ls” you will see that the only output is “readme”, but “cat readme” gives you the password.
