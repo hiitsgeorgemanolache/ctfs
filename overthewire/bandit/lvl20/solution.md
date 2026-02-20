@@ -1,0 +1,2 @@
+“setuid” - set user identity - allows you to enter with the privileges of the file owner instead of yours
+When you “ls” you see “bandit20-do” highlighted in ran, if you go “file bandit20-do”, you will see it’s executable. When you run it with “./bandit20-do” (no arguments as in the title), you will see it is used to read other files as owner - so “./bandit20-do cat /etc/bandit_pass/bandit20” will do the job.
