@@ -1,0 +1,2 @@
+When you check the manuals, you will see “s_client” will help you get further. To get to the manual on the terminal, you have to “man openss-s_client” where you will see the “-connect” option to which you add “hostname:port” in this format.
+The command “openssl s_client -connect localhost:30001” will give you SSL/TLS information and will require input, to which you respond by entering “Password for Bandit16” password. It will output “correct” and will give you the password.
