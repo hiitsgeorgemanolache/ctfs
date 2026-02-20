@@ -1,0 +1,1 @@
+To enter “inhere”, you need to “cd inhere”. The file is “hidden” because it has the dot at the beginning (Unix convention to keep the workspace cleaner), but “ls -a” outputs all files in the directory, regardless if they have a dot at the beginning or not (“do not ignore entries starting with .”). Then you “cat”.
