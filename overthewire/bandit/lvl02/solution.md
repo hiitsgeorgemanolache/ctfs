@@ -3,4 +3,4 @@ To avoid this **option parsing collision**, reference the file explicitly with:
 
 ```bash
 #open file with a ambiguous name  
-`cat ./-`
+cat ./-
