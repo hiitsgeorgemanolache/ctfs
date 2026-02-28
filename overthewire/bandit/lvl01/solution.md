@@ -1,1 +1,4 @@
-Now that you entered bandit0, when you check all the recommended manuals, you see “ls” lists files and directories, and “cat” is used to open what’s inside. When running “ls” you will see that the only output is “readme”, but “cat readme” gives you the password.
+Once you're logged in as **bandit0**, use the **cat** command, which opens files and whose manual page you can investigate here: [cat(1) — Linux manual page](https://man7.org/linux/man-pages/man1/cat.1.html)
+
+#open file content  
+`cat readme`
