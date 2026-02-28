@@ -1,1 +1,4 @@
-Apart from starting with a “-“, this password also has multiple words, so you can’t just type it out like that, it will confuse the calculator. When looking at the “ls” spec, what ls -b does is basically "Instead of outputting those invisible control characters directly (which could mess up the terminal), show them as their \n, \t, \x1B, etc. escape sequences so they’re readable and safe to view”. This will output the file name with the backslashes, so you can just “cat *copy and paste the name*”.
+Not only does the filename start with a **-**, it also has multiple spaces. The shell treats spaces as separating arguments, so simply typing the filename out like that won’t generate the desired output. To fix this issue, we can use quotations.  
+```bash
+#open a file with ambiguous name - containing spaces
+cat '--spaces in this filename--'
