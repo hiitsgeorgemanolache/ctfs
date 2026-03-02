@@ -1,1 +1,8 @@
-When you “cd inhere” and then “ls”, you will see 20 directories, each containing 6 files, totalling 120 files. It is time-wasting to test each one until you get to the password, and you miss out on an opportunity to learn. You can use multiple options in one command and upon checking the “find” manual in a thorough manner, you see “-size n”, in which you enter a value “n” (1033 in our case) and the unit (“c” in our case, which represents “bytes”). You are looking for a human-readable non-executable file, so a regular file fits in that category. Command “find -type f -size 1033c” will output only one file, which will give you the password when “cat”ting it. After more studying, yo can also add “-not” and then another option to search for the opposite of that option, e.g. “find -not -executable”
+Once you run `ls`, you will see 20 directories with 6 files each (totalling 120 files). Instead of wasting time by opening each file until the password pops up, use the `find` command and its flags. You can check its `man` page here: [find(1) — Linux manual page](https://man7.org/linux/man-pages/man1/find.1.html)  
+
+Upon checking manual in a thorough manner, you will see `-size n` and `-type c` under the *Tests* section. Use the information provided in the question and write the flags accordingly. For the first one, **n = 1033** and the suffix is **c** for bytes. You are looking for a human-readable non-executable file, so a regular file fits in that category
+
+```bash
+find -type f -size 1033c
+cat "filename"
+```
