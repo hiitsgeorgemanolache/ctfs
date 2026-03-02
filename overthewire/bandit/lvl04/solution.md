@@ -7,5 +7,5 @@ The file is “hidden” because of the **.** at the beginning (Unix convention 
 cd inhere
 #show all filenames
 ls -a
-cat *filename*  
+cat "filename"  
 ```
