@@ -1,1 +1,7 @@
-The password for the next level is stored in the file data.txt and is the only line of text that occurs only once thought of using pipes. Ran "ls" and there was direct access to data.txt, so no need for cd or find. Opened to see what it is - saw a lot of lines. Then I check man for all of the recommended commands and saw sort has a -R function which puts the repeated lines with one another, but shuffled groups. Then the answer stood out to me, but I wanted to find a way where only the answer is printed, cause then it would be slightly cutting myself off valuable knowledge. uniq had to be the answer cause the name of the command is quite self-explanatory and man uniq, saw which only prints the unique lines, and the answer was printed, ran this as a password and got to the next level cat data.txt | sort -R | uniq -u
+I thought of using pipes, which are used to funnel the output of the previous command as input for the next. First, I checked out the file's contents and saw a lot of lines. Then I checked the `man` page of all of the commands recommended on the webpage, and stumbled upon `sort` and one of its flags, `-R`:  
+`-R`, `--random-sort` - shuffle, but group identical keys (the `man` page: [sort - sort lines of text files](https://man7.org/linux/man-pages/man1/sort.1.html))  
+I could already see the password just from this command, but I wanted to find chain of commands that only outputs the desired line. In order to do that, use the `uniq` command and its `-u` flag, which only prints unique lines (the `man` page: [uniq - report or omit repeated lines](https://man7.org/linux/man-pages/man1/uniq.1.html))  
+  
+```bash
+cat data.txt | sort -R | uniq -u
+```
