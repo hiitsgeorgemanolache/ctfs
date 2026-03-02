@@ -4,7 +4,7 @@
 find -user bandit7 -group bandit6 -size 33c
 ```
 
-Running this command produces many "Permission denied" messages.  
+Running this command produces many *Permission denied* messages.  
 These can be redirected to `/dev/null` using `2>/dev/null`, a useful technique when running commands that traverse the filesystem, where permission errors are expected and not relevant to the task.
 
 In Bash file descriptor notation:
