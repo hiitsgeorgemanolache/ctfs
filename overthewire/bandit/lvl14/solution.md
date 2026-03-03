@@ -1,2 +1,6 @@
-For Bandit 14, I used the private key in Bandit 13 Looking at the manual, I saw ssh -i - Selects a file from which the identity (private key) for public key authentication is read. Synopsis for this is identity_file destination, to which you also add -p 2220 cause of the port requirements. Therefore I ran: “ssh -i sshkey.private -p 2220 bandit14@localhost” and it took me to bandit14.
-Then you cat /etc/bandit_pass/bandit14 as told in the question and you get the password.
+Use the `ssh` command, which also has an `-i` flag that selects a file from which the identity (private key) for RSA or DSA authentication is read.  
+Bare in mind the usual protocol requirements still apply, so you need to add `-p 2220`.  
+```bash
+ssh -i sshkey.private -p 2220 bandit14@localhost
+cat /etc/bandit_pass/bandit14
+```
