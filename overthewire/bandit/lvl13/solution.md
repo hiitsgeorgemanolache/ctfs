@@ -1,5 +1,4 @@
-The `mktemp -d` command creates a temporary directory  
-You look through the “cp” manual and see the synopsis - source destination, so
+The `mktemp -d` command creates a temporary directory, also use the `cp` command (`man` page: [cp(1) - Linux man page](https://linux.die.net/man/1/cp).
 ```bash
 #copy the contents of the original file, then change directory to the one that was created using the command written at the top (tdm - temporary directory name)
 cp data.txt *tdm*
