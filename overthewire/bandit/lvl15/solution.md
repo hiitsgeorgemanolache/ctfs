@@ -1,4 +1,4 @@
-For this level, you have to use nc because you want the server to listen and to have a connection opened. Synopsis is
-nc proxy address hostname port
+Since the password for the current level is retrieved by writing the password for the previous level, the server is waiting for a connection and listening to your input. Use `nc` for arbitrary TCP and UDP connections and listens, whose synopsis can be read in this man page ([nc(1) - Linux man page](https://linux.die.net/man/1/nc))
+```bash
 nc localhost 30000
-Then it will wait for you to enter some input and that’s where you enter the “Password for Bandit14”, to which it says “correct” and you get the next password
+```
