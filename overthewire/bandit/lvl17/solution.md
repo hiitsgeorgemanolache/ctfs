@@ -1,10 +1,53 @@
-Check the specs and looked at nmap (short for network mapping)
-One of its options is -p which refers to port scanning, to which you can add a range of ports.
-The port range in the question is 31000-32000, so the first part of the command is “nmap -p31000-32000”
-The synopsis tells us that a host is also needed, which is “localhost” in our case.
-In “Options Summary”, we can see -sV, which scans inside those ports and tells us whether they speak SSL/TLS or not
-Therefore, the first command is “nmap -p31000-32000 -sV localhost” - this function shows us only 5 ports actually listen and only 2 out of those speak SSL/TLS
-Then try openssl s_client -connect localhost:port like in the previous level, but the problem is maybe due to the password starting with “k” or maybe a bug or maybe intentionally, this command will endlessly ask for the current password and display “KEYUPDATE”. The exercise also notes that in case this happens, you have to go to “CONNECTED COMMANDS”.
-I checked that section and saw mentions of “-quiet” and “-ign_eof”, so when I checked “-quiet”, I saw it implicitly turns on “ign_eof” as well, which “inhibits shutting down the connection when end of file is reached in the input”. “-quiet” also inhibits printing of session and certification information.
-When using “openssl s_client -quiet -connect localhost:port” (the 2 options were 31518 and 31790),  the first one will just give you back what you typed, but the second one will say correct and give you a private key. I knew I had to take that key and save it in a file, which I will later apply the function I learnt in Level 14 to it (ssh -I private key bandit17@localhost)
-I haven’t used nano until this moment, but when surfing the net, saw that this option can help me create file using copied content. Cmd + C to copy the key content, nano *named it sshkey16.private* (which I added in a folder “bandit16game” in “tmp” so I used “mkdir” for that) in the “bandit16game” sub-directory, then “ctrl + O” to save the content in a file, then “ctrl+X” to exit. Before “ssh -I” you need to “chmod 600” it, which basically means “read/write for you, no access to anyone else” which will make the key private. OpenSSH is picky about key permissions, so it refuses a key file if other can read it. Then you run the “ssh -i sshkey16.private bandit17@localhost” which will take you to the next level. When in bandit17, just like in bandit14, you cat “/etc/bandit_pass/bandit17” and the password is there.
+## Port Enumeration
+
+To identify the correct service, `nmap` (Network Mapper) was used with the `-p` and `-sV` flags:
+
+```bash
+nmap -p31000-32000 -sV localhost
+#-p31000-32000 scans the specified port range
+#-sV performs service version detection
+```
+The scan revealed that five ports were listening within the specified range. Among them, two ports supported SSL/TLS encryption.
+Each SSL-enabled port was tested using:
+```bash
+openssl s_client -connect localhost:<port>
+```
+The initial connection resulted in repeated password prompts and continuous *KEYUPDATE* messages. The challenge instructions indicate that in such cases, the *CONNECTED COMMANDS* section of the `openssl s_client` manual should be reviewed.
+Inspection of the documentation revealed two relevant options:
+• `-quiet` — Suppresses session and certificate output.
+• `-ign_eof` — Prevents the connection from closing when EOF (End Of File) is reached.
+The `-quiet` option implicitly enables `-ign_eof`, making it suitable for interactive use.
+The corrected command:
+```bash
+openssl s_client -quiet -connect localhost:<port>
+```
+Of the two SSL-enabled ports identified (*31518* and *31790*):
+- Port 31518 echoed input without returning useful data
+- Port 31790 returned a private SSH key after receiving the correct password
+
+## Private Key Extraction
+
+The retrieved private key was saved locally in a temporary working directory:
+```bash
+mkdir /tmp/bandit16game
+cd /tmp/bandit16game
+nano sshkey16.private
+```
+To satisfy OpenSSH’s strict permission requirements (refuses to use private keys that are accessible by other users), the key permissions were restricted:
+```bash
+chmod 600 sshkey16.private
+```
+This sets:
+- Read and write permissions for the owner
+- No permissions for group or others
+
+## SSH Authentication
+
+Authentication was performed using the extracted private key:
+```bash
+ssh -i sshkey16.private bandit17@localhost
+```
+After successful login, the password for the next level was retrieved:
+```bash
+cat /etc/bandit_pass/bandit17
+```
