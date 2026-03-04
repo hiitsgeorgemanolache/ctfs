@@ -12,8 +12,8 @@ Each SSL-enabled port was tested using:
 openssl s_client -connect localhost:<port>
 ```
 The initial connection resulted in repeated password prompts and continuous *KEYUPDATE* messages. The challenge instructions indicate that in such cases, the *CONNECTED COMMANDS* section of the `openssl s_client` manual should be reviewed.  
-Inspection of the documentation revealed two relevant options:
-• `-quiet` — Suppresses session and certificate output.
+Inspection of the documentation revealed two relevant options:  
+• `-quiet` — Suppresses session and certificate output.  
 • `-ign_eof` — Prevents the connection from closing when EOF (End Of File) is reached.  
 The `-quiet` option implicitly enables `-ign_eof`, making it suitable for interactive use.  
 The corrected command:
