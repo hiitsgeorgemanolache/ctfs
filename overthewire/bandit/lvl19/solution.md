@@ -1,2 +1,19 @@
-“Bashprofile” uses “bashrc” and the latter was modified so that it activated the former to disallow me whenever I tried to enter using SSH, even with the right credentials. The secret behind this is that whenever I log in like in the other levels I have CLI access so I can roam and give commands. But this time, I’m not allowed to. This is the concept behind interactive and non-interactive sessions - the former was already kind of explained but the latter takes in the command(s) from the login request and gets what you want but will automatically log you out after.
-So “ssh -p 2220 bandit18@bandit.labs.overthewire.org *like usual* cat readme” from this line already so that when it logs in, it automatically reads the file and then logs you out. You can do multiple commands - but for that it’s recommended you use quotation marks and “&&” signs and pipes.
+## Interactive vs Non-Interactive SSH Sessions
+In this level, access was restricted due to modifications in the shell initialization files. The `.bashrc` configuration was altered to automatically terminate the session upon login, preventing normal interactive shell access.  
+Typically, SSH login provides an **interactive session**, allowing direct command execution via a CLI environment. However, SSH also supports **non-interactive sessions**, where a command is provided during the connection request. In this mode:  
+- The specified command is executed immediately upon login.  
+- The session terminates automatically after execution.  
+- No interactive shell is spawned.
+## Executing a Remote Command via SSH
+Instead of logging in normally, a command was supplied directly during the SSH connection:  
+```bash
+ssh -p 2220 bandit18@bandit.labs.overthewire.org cat readme
+```
+Multiple commands can be executed by enclosing them in quotation marks:
+```bash
+ssh -p 2220 bandit18@bandit.labs.overthewire.org "command1 && command2"
+```
+Common operators include:  
+• && — Executes the second command only if the first succeeds.  
+• ; — Executes commands sequentially regardless of success.  
+• | — Pipes the output of one command into another.
