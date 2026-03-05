@@ -22,7 +22,7 @@ echo "Copying passwordfile /etc/bandit_pass/$myname to /tmp/$mytarget"
 cat /etc/bandit_pass/$myname > /tmp/$mytarget
 ###
 ```
-The trick is to put your identity (the “whoami” of the script) as “bandit23” cause you are looking for the password for that level. Run the script command, which means:
-basically this function takes the output of the first part- which is "I am user myname" (bandit23 in our case) - and md5sum it, so check and compute the MD5 checksum (so the MD5 value of what was just said and compare it to their checksums), the output will then by cut with -d -f1 which is delimiting by only outputting field 1 - filed start from 1.
-*MD5 value is the 128-bit value*
-Because you don’t have the permission to open the bandit23 file, you will just cat the /tmp/8ca319486bfbbc3663ea0fbe81326349, which is the result that you will get from doing the “echo I am user …” and get the password -that’s it.
+The script assigns the current user to a variable - myname=$(whoami)  
+Since the cron job runs as bandit23, the variable resolves to - myname = bandit23    
+A filename is generated using an MD5 hash, substituting the username, which produces a hash `8ca319486bfbbc3663ea0fbe81326349`. Thus, the target filename becomes `/tmp/8ca319486bfbbc3663ea0fbe81326349`.  
+Direct access to `/etc/bandit_pass/bandit23` is restricted. However, the cron job copies its contents into `/tmp`, which is world-readable. The password can therefore be retrieved with `cat /tmp/8ca319486bfbbc3663ea0fbe81326349`.
