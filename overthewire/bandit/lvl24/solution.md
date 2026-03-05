@@ -47,10 +47,11 @@ vi passwordretriever.sh #creates a script
 ```
 Script contents:
 ```bash
-#!/bin/bash
+#!/bin/bash #shebang
 
 cat /etc/bandit_pass/bandit24 > /tmp/tmp.mtqU03S7tz/myscript.sh
 ```
+A **shebang** is the first line in a script that specifies which interpreter should execute the file. It begins with `#!` followed by the path to the interpreter.
 Then:
 ```bash
 chmod +x passwordretriever.sh #makes the file executable
