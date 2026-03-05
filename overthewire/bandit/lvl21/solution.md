@@ -11,7 +11,7 @@ ls
 ```
 The output reveals that the program establishes a TCP connection to localhost on a specified port.
 
-To interact with this connection, the `nc` (**netcat**) utility can be used. Reviewing the manual shows that the `-l` option which is used to specify `nc` should listen for an incoming connection rather than initiate a connection to a remote host. The destination and port to listen on can be specified either as non-optional arguments, or with options `-s` and `-p` respectively. In this case, write *localhost* and the port number can be the port can be any available value between 1 and 65535. The following command should be run in another terminal, **logged in as *bandit20***:
+To interact with this connection, the `nc` (**netcat**) utility can be used. Reviewing the manual shows that the `-l` option which is used to specify `nc` should listen for an incoming connection rather than initiate a connection to a remote host. The destination and port to listen on can be specified either as non-optional arguments, or with options `-s` and `-p` respectively. In this case, *localhost* should be written and the port number can be the port can be any available value between 1 and 65535. The following command should be run in another terminal, **logged in as *bandit20***:
 ```bash
 #listen on a selected port (random number) with a selected destination
 nc -l -s localhost -p 3762
