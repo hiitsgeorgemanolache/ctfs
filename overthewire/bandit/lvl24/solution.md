@@ -34,10 +34,10 @@ The script performs the following actions:
 • changes the working directory to */var/spool/bandit24/foo*  
 • iterates through all files in that directory  
 For each file:  
-• Determines the file owner using `stat`  
-• Executes the file only if the owner is *bandit24*  
-• Applies a timeout of 60 seconds  
-• Deletes the file after execution  
+• determines the file owner using `stat`  
+• executes the file only if the owner is *bandit24*  
+• applies a timeout of 60 seconds  
+• deletes the file after execution  
 This behavior means that any script placed in the directory will be executed with the privileges of *bandit24*, provided the ownership condition is satisfied.  
 A script can be created that reads the password for bandit24 and writes it to a temporary location that is readable.
 ```bash
