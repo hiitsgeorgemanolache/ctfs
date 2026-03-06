@@ -6,10 +6,10 @@ ls -a
 cat "cronjob_bandit24"
 #output:
 ###
-@reboot bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
-* * * * * bandit23 /usr/bin/cronjob_bandit23.sh  &> /dev/null
+@reboot bandit24 /usr/bin/cronjob_bandit24.sh  &> /dev/null
+* * * * * bandit24 /usr/bin/cronjob_bandit24.sh  &> /dev/null
 ###
-cat "/usr/bin/cronjob_bandit23.sh"
+cat "/usr/bin/cronjob_bandit24.sh"
 #output:
 ###
 #!/bin/bash
