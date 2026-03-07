@@ -8,7 +8,7 @@ Some notes for level29 of bandit.
 - username: bandit29
 - password: <no passwords in production!>
 ```
-To inspect the available branches in the repository, the following `git-branch` command can be used (documentation: [git-branch - List, create, or delete branches](https://git-scm.com/docs/git-branch)
+To inspect the available branches in the repository, the following `git-branch` command can be used (documentation: [git-branch - List, create, or delete branches](https://git-scm.com/docs/git-branch))
 ```bash
 git branch -a #lists both remote-tracking branches and local branches 
 origin/HEAD -> origin/master
