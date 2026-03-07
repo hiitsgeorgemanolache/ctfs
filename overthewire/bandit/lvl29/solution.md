@@ -13,7 +13,7 @@ The commit history of the repository can be examined using `git log`, which disp
 ```bash
 git log
 ```
-This reveals several commits together with information such as the commit hash, author, date, and commit message. One of the commits includes the message “add missing data”, which suggests that additional information may have been introduced at that point in the repository’s history.  
+This reveals several commits together with information such as the commit hash, author, date, and commit message. One of the commits includes the message *add missing data*, which suggests that additional information may have been introduced at that point in the repository’s history.  
 To inspect the contents of a repository at a specific commit, `git checkout` can be used with the corresponding commit hash.
 ```bash
 git checkout *commit_hash*
