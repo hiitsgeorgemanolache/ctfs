@@ -4,7 +4,8 @@ The objective of this level is to escape a restricted uppercase shell and obtain
 Upon logging into the level, the system immediately launches a program called `uppershell`. This environment behaves differently from a standard shell:  
 - most commands return *permission denied* or *command not found*  
 - standard utilities such as `ls`, `cat`, and `cd` cannot be executed  
-- the `exit` command does not function normally   
+- the `exit` command does not function normally
+  
 These restrictions indicate that the user is interacting with a **wrapper program** rather than a normal shell environment.
 
 ### Behaviour of `uppershell`
