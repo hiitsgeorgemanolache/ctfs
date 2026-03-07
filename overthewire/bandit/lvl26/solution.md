@@ -3,8 +3,6 @@ While `more` is running, several interactive commands are available. One of thes
 The challenge specifies that the shell used by *bandit26* is **not `bash`**, so the first step is to inspect the user's shell configuration in `/etc/passwd`.
 ```bash
 cat /etc/passwd | grep bandit26
-```bash
-cat /etc/passwd | grep “bandit26” #opens all the content for passwords and selects the line that talks about bandit26
 #output - /usr/bin/showtext
 
 cat /usr/bin/showtext
