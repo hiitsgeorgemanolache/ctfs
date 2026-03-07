@@ -1,5 +1,24 @@
-For this level you need to focus on the functionality of more. I you check the “more” manual, you will see the v option which you don’t write as a command but you type “v” on your keyboard whilst you’re in more. “more” displays the contents of a file in terminal - e.g. if the file is very big and you slide down the content, that is more.
-The way you realise the importance of this function is by checking what bandit26 uses if not “bash” (info from question), that is done by “cat /etc/passwd | arep “bandit26””, basically opening all the content for passwords and selecting the line that talks about bandit26. Then you “cat” that information (“/usr/bin/showtext”) and you get exec more ~/text.txt. If you minimise the window, more will pop up (just physically drag the corners to make it as small as possible). You type something you learned in one of the previous levels:
-“ssh -i bandit26.sshkey -p 2220 bandit26@localhost” - you know about that ssh key because a lot of the times, the first thing to do whilst entering a new bandit level is to type “ls” and you will see it’s the only non-hidden file.
-You will see more in the corner and at that moment, you type “v” - that way you will then see “~/text.txt” so you’re on the right track.
-Then you need to look at what you can do with vi/vim and see you have some options - “Insert Mode” which lets you write in the file and “Escape Mode”, where you “:” to save with “wq” or quit without saving with “q!”. But you can also “:read” and if you “:read etc/bandit_pass/bandit26”, the password will pop up at the bottom of the page.
+The `more` command (documentation: [more(1) — Linux manual page](https://man7.org/linux/man-pages/man1/more.1.html)) is used to display the contents of a file in a terminal. It is particularly useful when working with files containing large amounts of data, as it allows the content to be viewed one screen at a time.  
+While `more` is running, several interactive commands are available. One of these is `v`, which opens the currently viewed file in the system’s default editor (commonly `vi`). This command is **not provided as a command-line flag**, but is instead pressed while `more` is active.  
+The challenge specifies that the shell used by *bandit26* is **not `bash`**, so the first step is to inspect the user's shell configuration in `/etc/passwd`.
+```bash
+cat /etc/passwd | grep bandit26
+```bash
+cat /etc/passwd | grep “bandit26” #opens all the content for passwords and selects the line that talks about bandit26
+#output - /usr/bin/showtext
+
+cat /usr/bin/showtext
+#output - exec more ~/text.txt
+```
+This reveals that the program simply executes `more` on the file *~/text.txt*.
+```bash
+ls
+#output - bandit26.sshkey
+
+ssh -i bandit26.sshkey -p 2220 bandit26@localhost #this command should be executed whilst the terminal window is minimised by dragging its corners
+```
+To ensure that `more` activates instead of immediately exiting, the terminal window should be reduced in size before connecting. This causes more to paginate the output rather than display the entire file at once. When it appears on the screen, pressing `v` opens the file in the `vi` editor.  
+Apart from the commonly used *Insert Mode* and *Normal Mode*, `vi` also supports **command-line operations**. One useful command is `:read` (or `:r`), which inserts the contents of a file or the output of a shell command into the current buffer.
+```bash
+:read /etc/bandit_pass/bandit26
+```
