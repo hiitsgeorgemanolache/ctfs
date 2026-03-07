@@ -9,7 +9,7 @@ Some notes for level29 of bandit.
 - username: bandit29
 - password: xxxxxxxxxx
 ```
-The commit history of the repository can be examined using `git log`, which displays all commits in the current branch along with their associated metadata (documentation: [git-log - Show commit logs]((https://git-scm.com/docs/git-log)). 
+The commit history of the repository can be examined using `git log`, which displays all commits in the current branch along with their associated metadata (documentation: [git-log - Show commit logs](https://git-scm.com/docs/git-log). 
 ```bash
 git log
 ```
