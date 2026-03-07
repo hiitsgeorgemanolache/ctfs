@@ -13,7 +13,7 @@ This reveals that the program simply executes `more` on the file *~/text.txt*.
 ls
 #output - bandit26.sshkey
 
-ssh -i bandit26.sshkey -p 2220 bandit26@localhost #this command should be executed whilst the terminal window is minimised by dragging its corners
+ssh -i bandit26.sshkey -p 2220 bandit26@localhost
 ```
 To ensure that `more` activates instead of immediately exiting, the terminal window should be reduced in size before connecting. This causes more to paginate the output rather than display the entire file at once. When it appears on the screen, pressing `v` opens the file in the `vi` editor.  
 Apart from the commonly used *Insert Mode* and *Normal Mode*, `vi` also supports **command-line operations**. One useful command is `:read` (or `:r`), which inserts the contents of a file or the output of a shell command into the current buffer.
