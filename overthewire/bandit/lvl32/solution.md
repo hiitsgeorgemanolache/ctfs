@@ -20,6 +20,6 @@ When executing the `git push` command, authentication is required.
 The password obtained in the previous level must be provided in order to successfully push the commit and receive the credentials for the next level.
   
 Documentations:  
-- [git-push - Update remote refs along with associated objects](https://git-scm.com/docs/git-push))  
-- [git-commit - Record changes to the repository](https://man7.org/linux/man-pages/man1/git-commit.1.html))  
-- [git-add - Add file contents to the index](https://git-scm.com/docs/git-add))
+- [git-push - Update remote refs along with associated objects](https://git-scm.com/docs/git-push)  
+- [git-commit - Record changes to the repository](https://man7.org/linux/man-pages/man1/git-commit.1.html)  
+- [git-add - Add file contents to the index](https://git-scm.com/docs/git-add)
