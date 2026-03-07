@@ -14,6 +14,7 @@ While alphabetic characters are transformed, several characters remain unaffecte
 - digits (`0–9`)  
 - many punctuation characters  
 - shell variable syntax (`$`)  
+  
 These characters can be used to interact with the underlying shell.
 
 ### Using Shell Variable Expansion
