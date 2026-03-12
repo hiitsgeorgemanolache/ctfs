@@ -1,1 +1,1 @@
-The details provided in the official page should be entered.
+Authentication is performed using the credentials provided on the official challenge page.
