@@ -28,8 +28,8 @@ Disallow: /s3cr3t/
 
 The `Disallow` directive indicates that the directory `/s3cr3t/` exists but should not be indexed by search engines.
 
-Although intended for crawlers, these paths remain publicly accessible. Visiting the directory directly reveals a page containing the password for the next level.
+Although intended for crawlers, these paths remain publicly accessible. Visiting the directory directly (http://natas3.natas.labs.overthewire.org/s3cr3t/) reveals a file (`users.txt`) containing the password for the next level.
 
 ## Solution
 
-The password for **natas4** is obtained from the `/s3cr3t/` directory.
+The password for **natas4** is `QryZXc2e0zahULdHrtHxzyYkj59kUxLQ`.
