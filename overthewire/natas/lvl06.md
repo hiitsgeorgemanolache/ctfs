@@ -26,4 +26,7 @@ The cookie value can be modified directly in the browser:
 5. Refresh the page
 
 ## Result
-After refreshing the page with the modified cookie, the application grants access and reveals the password for the next level.
+After refreshing the page with the modified cookie, the following message can be seen:
+```
+Access granted. The password for natas6 is 0RoJwHdSKWFTYR5WuiAewauSuNaBXned
+```
