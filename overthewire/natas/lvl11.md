@@ -30,7 +30,7 @@ However, the input is still not safely handled when passed to the shell.
 
 ## Exploitation
 
-The conditional statement only checks whether $key is an empty string:
+The conditional statement only checks whether `$key` is an empty string:
 ```php
 if($key != "")
 ```
