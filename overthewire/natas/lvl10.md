@@ -21,7 +21,7 @@ Because the input is inserted into a shell command, command separators can be us
 In this case, the payload is structured so that the original command is closed and a second command is executed to print the password file for the next level:
 
 ```text
-"; cat /etc/natas_webpass/natas10
+""; cat /etc/natas_webpass/natas10
 ```
 The appended `cat` command reads the password directly from:
 ```text
