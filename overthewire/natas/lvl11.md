@@ -44,7 +44,7 @@ This results in the following shell command:
 ```php
 grep -i "" dictionary.txt
 ```
-In shell syntax, **""** represents an empty string. An empty search pattern is valid for `grep`, causing every line in the file to match.
+In shell syntax, `""` represents an empty string. An empty search pattern is valid for `grep`, causing every line in the file to match.
 
 Since the input is inserted directly into the command arguments, additional file paths can be supplied. By referencing the password file for the next level, 
 the command becomes:
