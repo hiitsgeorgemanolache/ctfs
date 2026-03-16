@@ -25,7 +25,7 @@ Because the user input is embedded in the command without proper sanitization or
 
 ## Input Restrictions
 
-Unlike the previous level, several special characters commonly used for command injection (such as `;` or `|`|) are filtered. 
+Unlike the previous level, several special characters commonly used for command injection (such as `;` or `|`) are filtered. 
 However, the input is still not safely handled when passed to the shell.
 
 ## Exploitation
