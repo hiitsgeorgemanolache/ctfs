@@ -19,7 +19,7 @@ The server trusts the filename provided by the user to determine the file extens
 
 This creates a vulnerability where an attacker can manipulate how the file is stored and later interpreted.
 
-## 🧠 Exploitation
+##  Exploitation
 
 ### Craft a Malicious Payload
 
