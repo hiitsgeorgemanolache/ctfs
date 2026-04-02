@@ -61,4 +61,4 @@ Even though the file passed validation as an image, modifying the request ensure
 - the server responds with a link to the uploaded file  
 - click the link  
   
-trbs5pCjCrkuSknBBKHhaBxq6Wm1j3LC
+The password is `trbs5pCjCrkuSknBBKHhaBxq6Wm1j3LC`.
