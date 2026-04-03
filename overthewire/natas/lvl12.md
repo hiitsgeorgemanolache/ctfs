@@ -133,8 +133,6 @@ HmYkBwoSNDYcFhIrJQtHX2YuChZHaHUNAgYrOwAXR351TAMDIjEJA0c5
 
 Replace the existing `data` cookie in the browser or via an HTTP request.
 
----
-
 ## Result
 
 When the modified cookie is processed, the application interprets:
