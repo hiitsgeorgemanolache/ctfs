@@ -36,8 +36,6 @@ setcookie("data", base64_encode(
 ));
 ```
 
----
-
 ## Data Flow
 
 The application applies a reversible transformation pipeline:
