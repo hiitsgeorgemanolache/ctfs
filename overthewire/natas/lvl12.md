@@ -3,8 +3,6 @@
 The application stores user preferences in a cookie and claims that the data is protected using XOR encryption.
 The objective is to manipulate this cookie to set a hidden parameter (`showpassword`) to `"yes"`, which reveals the password for the next level.
 
----
-
 ## Source Code Analysis
 
 The application initializes default data as:
@@ -54,8 +52,6 @@ And reverses it when reading:
 Cookie → Base64 Decode → XOR Decrypt → JSON Decode
 ```
 
----
-
 ## Vulnerability
 
 The system uses XOR encryption with a repeating key.
@@ -73,8 +69,6 @@ ciphertext ⊕ plaintext = key
 ```
 
 Because the default JSON structure is predictable, this becomes a **known-plaintext attack**.
-
----
 
 ## Exploitation
 
