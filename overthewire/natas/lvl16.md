@@ -1,4 +1,4 @@
-## Overview
+## Level Overview
 
 This level demonstrates a **boolean-based blind SQL injection**, where the application does not return query results directly.
 Instead, it reveals limited information through conditional responses such as:  
