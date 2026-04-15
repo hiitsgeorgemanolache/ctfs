@@ -111,24 +111,4 @@ print(f"\n[+] Password: {password}")
 - this script performs a brute-force extraction using boolean responses
 - can be optimized further using ASCII ranges instead of full charset
 
----
-
-## Key Takeaways
-
-* **Blind SQL injection** relies on indirect information leakage
-* `SUBSTRING()` allows isolating individual characters
-* `ASCII()` is useful for resolving ambiguity
-* Manual testing helps validate logic before automation
-* Automation significantly improves efficiency for repetitive tasks
-
----
-
-## Final Thoughts
-
-This level highlights the importance of:
-
-* Proper input sanitization
-* Use of prepared statements
-* Avoiding direct query concatenation
-
-Even without visible output, improperly handled queries can still leak sensitive data through subtle behavioral differences.
+The password is `hPkjKYviLQctEW33QmuXL6eDVfMW4sGo`.
